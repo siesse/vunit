@@ -1,0 +1,15 @@
+- Add Python 3.9 to classifiers.
+- Use MAJOR and MINOR constants to check supported Python version. :vunit_issue:`724`
+- Fix pylint issues.
+- Use f-strings for string formatting. :vunit_issue:`743`
+- Set black line-length to 120 characters. :vunit_issue:`736`
+- Use Path from pathlib, instead of `open()`.
+- Add support for log location based on VHDL-2019 call paths. :vunit_issue:`729`
+- [Logging/log_deprecated_pkg] fix compilation issues with Cadence tools. :vunit_issue:`731`
+- [Parsing/tokenizer] partial revert of 5141f7c :vunit_issue:`735` :vunit_issue:`745`
+- [UI] make glob search recursive by default.
+- [VCs] bugfix AXI stream slave nonblocking check. :vunit_issue:`720`
+- [Examples] add shebang to run scripts. :vunit_issue:`738`
+- [Example/vhdl/user_guide] add VHDL 1993 variant, clean use statements, skip in acceptance tests if VHDL context not supported. :vunit_issue:`737`
+- [Docs] bump sphinx_btd_theme to v1, revert temporary pinning of Sphinx and docutils, remove redundant delete message call from com user guide example, fix ref to Travis CI (deprecated) (GitHub Actions is used now).
+- [CI] add emojis/icons, avoid deployments from forks, fix deploy condition event, add job using setup-ghdl-ci, update images from Debian Buster to Debian Bullseye, do not overload image tags.
