@@ -7,6 +7,7 @@
 -- Avalon-St Source Verification Component
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 context work.vunit_context;
 context work.com_context;
@@ -27,7 +28,8 @@ entity avalon_source is
     valid : out std_logic := '0';
     sop   : out std_logic := '0';
     eop   : out std_logic := '0';
-    data  : out std_logic_vector(data_length(source)-1 downto 0) := (others => '0')
+    data  : out std_logic_vector(data_length(source)-1 downto 0) := (others => '0');
+    empty : out std_logic_vector(empty_length(source)-1 downto 0):= (others=>'0')
   );
 end entity;
 
@@ -52,6 +54,7 @@ begin
       if msg_type = push_avalon_stream_msg then
         pop_avalon_stream_transaction(msg, avalon_stream_transaction);
         data <= avalon_stream_transaction.data;
+        empty <= std_logic_vector(to_unsigned(avalon_stream_transaction.empty,empty_length(source)));
         if avalon_stream_transaction.sop then
           sop <= '1';
         else

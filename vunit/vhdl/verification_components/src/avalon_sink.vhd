@@ -10,6 +10,7 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 context work.vunit_context;
 context work.com_context;
@@ -28,7 +29,8 @@ entity avalon_sink is
     valid : in std_logic;
     sop   : in std_logic;
     eop   : in std_logic;
-    data  : in std_logic_vector(data_length(sink)-1 downto 0)
+    data  : in std_logic_vector(data_length(sink)-1 downto 0);
+    empty : in std_logic_vector(empty_length(sink)-1 downto 0):=(others=>'0')
   );
 end entity;
 
@@ -55,6 +57,7 @@ begin
           reply_msg := new_msg;
           if msg_type = pop_avalon_stream_msg then
             avalon_stream_transaction.data := data;
+            avalon_stream_transaction.empty:= to_integer(unsigned(empty));
             if sop = '1' then
                 avalon_stream_transaction.sop := true;
             else
